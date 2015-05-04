@@ -1,0 +1,27 @@
+language: ruby
+sudo: required
+before_install:
+- gem install asciidoctor tilt
+- sudo apt-get install xsltproc
+script:
+- git clone https://github.com/rdhyee/asciidoctor-htmlbook.git
+- asciidoctor -a toc -b xhtml5 -d book -T ./asciidoctor-htmlbook/htmlbook-autogen/
+  -d book Twenty-Thousand-Leagues-under-the-Sea.asciidoc -o Twenty-Thousand-Leagues-under-the-Sea.html
+- git clone https://github.com/sethwoodworth/HTMLBook
+- xsltproc -stringparam external.assets.list " " ./HTMLBook/htmlbook-xsl/epub.xsl
+  Twenty-Thousand-Leagues-under-the-Sea.html
+- cp ./HTMLBook/stylesheets/epub/epub.css OEBPS
+- cp cover.png OEBPS/cover.png
+- zip -rX Twenty-Thousand-Leagues-under-the-Sea.epub mimetype
+- zip -rX Twenty-Thousand-Leagues-under-the-Sea.epub OEBPS/ META-INF/
+branches:
+  only:
+  - master
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: nlJAnqWJs2NSYlrIEao6Fx9FDbtIBzGfo24YBsYEJhhBhesljs1F5h9VORBT79Frimvu2Pqpom6EFej8y878KCHteq6mpOKfp777G8oPEYW4KcXhfCnJHFV0x0nMhAizQT4gAi9aBEje9zikSq54tuDD2BYvpVZrn+P6mBq/mRM=
+  file: Twenty-Thousand-Leagues-under-the-Sea.epub
+  on:
+    repo: sethwoodworth/Twenty-Thousand-Leagues-under-the-Sea_164
