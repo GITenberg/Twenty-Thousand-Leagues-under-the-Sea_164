@@ -1,7 +1,28 @@
+= Twenty Thousand Leagues Under The Sea
+JULES VERNE
+v0.0.2
 :toc:
 
-= TWENTY THOUSAND LEAGUES UNDER THE SEA
-JULES VERNE
+[colophon]
+== Copyright
+
+This edition of _Twenty Thousand Leagues Under the Sea_ is maintained, archived, and curated as part of
+the GITENBERG PROJECT.
+
+This work is in the public domain.
+
+If you find any issues with this work, please report them at
+https://github.com/GITenberg/Twenty-Thousand-Leagues-under-the-Sea_164/issues
+
++
+
+Cover provided by Recovering the Classics
+
+Artist: Priscilla Parizeau, (C) 2013
+
+Made available under a Creative Commons Attribution-NonCommercial 4.0 license
+
+https://creativecommons.org/licenses/by-nc/4.0/
 
 == PART ONE
 
