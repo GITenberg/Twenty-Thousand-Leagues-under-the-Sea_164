@@ -6,17 +6,17 @@ creator:
   author:
     agent_name: Verne, Jules
     aliases:
+    - Verne, Júlio
+    - Verne, Jules Gabriël
     - Verne, Jules Gabriel
-    - "Verne, Jules Gabri\xEBl"
-    - "Verne, J\xFAlio"
     birthdate: 1828
     deathdate: 1905
     gutenberg_agent_id: '60'
     url: http://www.gutenberg.org/2009/agents/60
     wikipedia:
-    - http://en.wikipedia.org/wiki/Jules_Verne
-    - "http://pt.wikipedia.org/wiki/J\xFAlio_Verne"
     - http://fr.wikipedia.org/wiki/Jules_Verne
+    - http://pt.wikipedia.org/wiki/Júlio_Verne
+    - http://en.wikipedia.org/wiki/Jules_Verne
 gutenberg_bookshelf: Science Fiction
 gutenberg_issued: '1994-09-01'
 gutenberg_type: Text
@@ -27,10 +27,10 @@ publisher: Project Gutenberg
 rights: Public domain in the USA.
 rights_url: http://creativecommons.org/about/pdm
 subjects:
-- '!lcsh:Submarines (Ships) -- Fiction'
-- '!lcsh:Science fiction'
-- '!lcc:PQ'
 - '!lcsh:Sea stories'
 - '!lcsh:Underwater exploration -- Fiction'
+- '!lcsh:Submarines (Ships) -- Fiction'
+- '!lcc:PQ'
+- '!lcsh:Science fiction'
 title: Twenty Thousand Leagues under the Sea
 url: http://www.gutenberg.org/ebooks/164
