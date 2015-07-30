@@ -2,6 +2,12 @@ _repo: Twenty-Thousand-Leagues-under-the-Sea_164
 alternative_title:
 - 20,000 Leagues Under the Sea
 - Vingt mille lieues sous les mers. English
+covers:
+- attribution: Wade Greenberg, 2015
+  cover_type: original
+  image_path: cover.jpg
+  rights: Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+  rights_url: https://creativecommons.org/licenses/by-nc/4.0/
 creator:
   author:
     agent_name: Verne, Jules
