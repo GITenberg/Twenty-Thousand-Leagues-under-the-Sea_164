@@ -1,5 +1,5 @@
 _repo: Twenty-Thousand-Leagues-under-the-Sea_164
-_version: 0.0.2
+_version: 0.1.0
 alternative_title:
 - 20,000 Leagues Under the Sea
 - Vingt mille lieues sous les mers. English
@@ -40,5 +40,6 @@ subjects:
 - '!lcsh: Underwater exploration -- Fiction'
 - '!lcc: PQ'
 - '!lcsh: Science fiction'
+- GITenberg
 title: Twenty Thousand Leagues under the Sea
 url: http://www.gutenberg.org/ebooks/164
