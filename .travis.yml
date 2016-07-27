@@ -3,33 +3,23 @@ dist: trusty
 language: ruby
 
 before_install:
-- gem install asciidoctor -v 1.5.2 
+before_install:
+- gem install asciidoctor -v 1.5.2
 - gem install tilt
-- sudo pip install git+https://github.com/rdhyee/ebooklib.git
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
 script:
 - VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
 - git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
-
 - sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
-- asciidoctor -a toc,idprefix=xx_,version=$VERSION -b xhtml5 -T ./asciidoctor-htmlbook/htmlbook-autogen/
-  -d book book.asciidoc -o book.html
-- git clone https://github.com/gitenberg-dev/HTMLBook
 
-# make book.html available to jinja2 environment by putting it into templates
-- cp book.html asciidoctor-htmlbook/gitberg-machine/templates/
-
-- /usr/bin/python asciidoctor-htmlbook/gitberg-machine/machine.py -o . -m metadata.yaml book.html
-- xsltproc -stringparam external.assets.list " " ./HTMLBook/htmlbook-xsl/epub.xsl book.html
-- cp ./HTMLBook/stylesheets/epub/epub.css OEBPS
-- if [ -e cover.jpg ]; then cp cover.jpg OEBPS/cover.jpg; fi
-# look for first images directory and one found, copy over to ./OEBPS
-- find . -name images -type d | head -n 1 | xargs -I {} mv {} ./OEBPS/
-- zip -rX book.epub mimetype
-- zip -rX book.epub OEBPS/ META-INF/
-- if test -d "OEBPS/images/"; then zip -rX book.epub OEBPS/images/ ;fi
-- mv book.epub Twenty-Thousand-Leagues-under-the-Sea.epub
-- ebook-convert Twenty-Thousand-Leagues-under-the-Sea.epub Twenty-Thousand-Leagues-under-the-Sea.mobi
-- xvfb-run ebook-convert Twenty-Thousand-Leagues-under-the-Sea.epub Twenty-Thousand-Leagues-under-the-Sea.pdf
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
 branches:
   only:
   - master
@@ -46,9 +36,9 @@ deploy:
   api_key:
     secure: qJrwulHdTLMnb7lNzhxiss3Jf7jBeX4xvrjQ6WMj5jo1smiWauiO3HuJqVrtjNCWUKzpUMJNOMXyHDWdfJMre1/JZUWvKciJAoV5whuQoQ0sD8G2tWVqEMJvdWwZ/8EJ7vWqT73bedZsR4N0ZC0pI26K6thLTXTXNWAuwy7ICsXRXPExfVgBYYCqa30MNX0Vwv0zNsTmqX8VUFqHtEdlbu7xRkdI5geGzJrztjisld4s41Pve8a4DG5EgAqMl/ys8eE0IJzyKtdIjE1IgP0CcgmEGVIebN364o4jNoFgiwj0vQBL1Lw5gBEHHz0/IvOxv5ufyTBT3qd0QN9qnuAxbCIzalYi9C2o7ShX4RkmLHG3zmuhdM0vF0Zi41ORJ49y93e5bFyaO/JDEYBjj/EVKBwD8zbMCITtjtGyhhFZMdiaFnzYshFoAaW/jYZrfzkyux+uJkPK8QrKHMUXsEYWl3t5UQq3vn0YZhXoOG5PIHi5kwQgGbs0eLbdO40AnxZROKFGttp7Ep2WMDWXOoWqhtdBF8IbaAxBYxM/Kofw2/eZuk6jtfJ2qphBbXTKhLLssAg7N3D2CkKowg3UcvT82iMxCXEDi7cq2OA+kTmg22Hm7R+/+GgzPH9Blfn+AMVssBc7nq3FbJgkmHuaiqpNpaPwARCWiB+jK73+z0rZ75E=
   file:
-    - Twenty-Thousand-Leagues-under-the-Sea.epub
-    - Twenty-Thousand-Leagues-under-the-Sea.mobi
-    - Twenty-Thousand-Leagues-under-the-Sea.pdf
+    - book.epub
+    - book.mobi
+    - book.pdf
   "on":
     repo: GITenberg/Twenty-Thousand-Leagues-under-the-Sea_164
 addons:
@@ -57,3 +47,15 @@ addons:
     - xsltproc
     - xvfb
     - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
